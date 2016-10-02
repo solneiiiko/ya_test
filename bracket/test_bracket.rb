@@ -15,7 +15,7 @@ class TestBracket < Test::Unit::TestCase
   end
 
   def test_4
-    assert_equal brackets(4), ['()()', '(())']
+    assert_equal brackets(4) - ['()()', '(())'], []
   end
 
   def test_6
@@ -25,10 +25,15 @@ class TestBracket < Test::Unit::TestCase
   def test_8
     res = ['()()()()', '(())()()', '()()(())', '(((())))',
       '(()())()', '(()())()', '()(()())', '()((()))',
-      '((()))()', '(()()())', '((())())',
+      '((()))()', '(()()())', '((())())', '(())(())',
       '((()()))', '(()(()))', '()(())()'
     ]
     assert_equal brackets(8) - res, []
+  end
+
+  def test_uniq
+    n10 = brackets(10)
+    assert_equal n10.length,n10.uniq.length
   end
 
 end
